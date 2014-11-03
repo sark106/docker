@@ -27,6 +27,32 @@ discarded when you stop the container unless you explicitly save them
 (with `docker commit`).
 
 
+Installation
+------------
+
+A reasonably recent Linux distribution will have docker packaged, for
+example on Fedora/Redhat/Centos run
+
+    yum install docker
+
+or Debian/Ubuntu:
+ 
+    apt-get install docker.io
+
+On OSX and Windows you first have to install the Boot2Docker helper
+application, which includes a minimal virtual machine to execute
+docker images.
+
+* OSX: http://docs.docker.com/installation/mac/
+
+* Windows: http://docs.docker.com/installation/windows/
+
+Running Boot2Docker then brings up a command line window where you can
+execute the above docker commands.
+
+See http://docs.docker.com/installation/ for more details.
+
+
 Build Instructions
 ------------------
 
