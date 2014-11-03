@@ -10,7 +10,7 @@ automatically download and use it if you ask it to run the
 `sagemath/sage` image. There are two ways to use the image. First, if
 you start it interactively then it will bring up a Sage command line:
 
-    docker run -i -t sagmath/sage
+    docker run -i -t sagemath/sage
 
 The other way to use the image is non-interactively, in which case it
 will run the notebook server:
