@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-yum -y update
-
 yum -y install \
     sudo \
     tar m4 bzip2 make patch perl-ExtUtils-MakeMaker python git \
