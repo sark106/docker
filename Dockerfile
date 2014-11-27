@@ -1,6 +1,6 @@
 # Sage Full Installation
 #
-# VERSION               0.2
+# VERSION               0.3
 
 FROM centos:centos7
 MAINTAINER Volker Braun <vbraun.name@gmail.com>
@@ -16,7 +16,7 @@ RUN echo 'sage ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/sage
 # Install updates late so we can cache the previous steps
 RUN yum -y update
 
-COPY sage-6.4.tar.gz /home/sage/sage.tar.gz
+COPY sage-6.4.1.tar.gz /home/sage/sage.tar.gz
 
 COPY install_sage.sh /home/sage/install_sage.sh
 RUN chmod 755 /home/sage/install_sage.sh
