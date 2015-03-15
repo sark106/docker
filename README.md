@@ -7,13 +7,13 @@ Quickstart
 We have a prebuilt docker image at
 https://registry.hub.docker.com/u/sagemath/sage/. Docker will
 automatically download and use it if you ask it to run the
-`sagemath/sage` image. There are two ways to use the image. First, if
-you just start it interactively then it will bring up a Sage command
-line:
+`sagemath/sage` image. So just running the following command will
+bring up a Sage command line without having installed anything before
+(except docker of course):
 
     docker run --rm -i -t sagemath/sage
 
-Any arguments after the `sagemath/sage` are passed to sage. If you
+All arguments after the `sagemath/sage` are passed to sage. If you
 want to run a sage notebook server you probably want to run it
 detached `-d` instead of interactively `-i`, which you can do like
 this:
