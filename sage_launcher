@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import pwd
+
+
+def change_to_user_sage():
+    p = pwd.getpwnam('sage')
+    os.chdir(p.pw_dir)
+    os.environ['HOME'] = p.pw_dir
+    if p.pw_uid == os.getuid():
+        return
+    if os.getuid() != 0:
+        raise RuntimeError('insufficient permissions to switch user ids')
+    os.setgid(p.pw_gid)
+    os.setuid(p.pw_uid)
+
+    
+if __name__ == '__main__':
+    change_to_user_sage()
+    print("Launching Sage...")
+    args = [
+        '/opt/sage/sage', 'sage'
+    ] + sys.argv[1:]
+    os.execl(*args)

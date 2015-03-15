@@ -3,13 +3,14 @@
 set -e
 set -v
 
-cd $HOME
-TARBALL=$(ls sage*tar.gz)
+echo "Building Sage-${SAGE_VERSION}" 
 
+cd /opt
+TARBALL="sage-${SAGE_VERSION}.tar.gz"
 tar xf $TARBALL
 rm $TARBALL
 
-ln -s $(find sage* -maxdepth 0 -type d) sage
+ln -s "sage-${SAGE_VERSION}" sage
 cd sage
 
 export SAGE_FAT_BINARY="yes"

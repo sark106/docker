@@ -1,14 +1,15 @@
 # Sage Full Installation
 #
-# VERSION               0.3
+# VERSION               0.4
 
 FROM centos:centos7
 MAINTAINER Volker Braun <vbraun.name@gmail.com>
 
+ENV SAGE_VERSION 6.5
+
+
 COPY install_requirements.sh /root/install_requirements.sh
-RUN chmod 755 /root/install_requirements.sh
-RUN /root/install_requirements.sh 
-RUN rm /root/install_requirements.sh 
+RUN /root/install_requirements.sh && rm /root/install_requirements.sh 
 
 RUN useradd --comment "Sage Math" --user-group --groups wheel --create-home sage
 RUN echo 'sage ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/sage
@@ -16,17 +17,19 @@ RUN echo 'sage ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/sage
 # Install updates late so we can cache the previous steps
 RUN yum -y update
 
-COPY sage-6.4.1.tar.gz /home/sage/sage.tar.gz
+COPY sage-${SAGE_VERSION}.tar.gz /opt/sage-${SAGE_VERSION}.tar.gz
+COPY install_sage.sh /opt/install_sage.sh
+COPY sage_launcher /opt/sage_launcher
+COPY sage_profile.sh /etc/profile.d/sage_profile.sh
 
-COPY install_sage.sh /home/sage/install_sage.sh
-RUN chmod 755 /home/sage/install_sage.sh
-RUN su sage -c /home/sage/install_sage.sh
-RUN rm /home/sage/install_sage.sh
+RUN chown --recursive sage.sage /opt
 
-COPY sage_launcher.py /home/sage/launcher.py
-RUN chmod 755 /home/sage/launcher.py
+# Everything from now on runs as user "sage"
+USER sage
 
-EXPOSE 22
+RUN /opt/install_sage.sh && rm /opt/install_sage.sh
+
 EXPOSE 8080
 
-CMD ["/home/sage/launcher.py"]
+ENTRYPOINT ["/opt/sage_launcher"]
+
