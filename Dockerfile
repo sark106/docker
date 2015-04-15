@@ -1,11 +1,11 @@
 # Sage Full Installation
 #
-# VERSION               0.4
+# VERSION               0.5
 
-FROM centos:centos7
+FROM fedora:latest
 MAINTAINER Volker Braun <vbraun.name@gmail.com>
 
-ENV SAGE_VERSION 6.5
+ENV SAGE_VERSION 6.6
 
 
 COPY install_requirements.sh /root/install_requirements.sh

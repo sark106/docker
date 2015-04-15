@@ -27,3 +27,6 @@ make
     nb.save()
     quit
 EOFSAGE
+
+./sage -pip install terminado
+
